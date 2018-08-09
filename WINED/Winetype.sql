@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [dbo].[WineType]
 (
 	[Id] INT NOT NULL PRIMARY KEY, 
-    [Name] VARCHAR(50) NULL
+    [Name] VARCHAR(50) NOT NULL
 )
