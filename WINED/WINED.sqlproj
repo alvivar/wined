@@ -59,12 +59,13 @@
     <Folder Include="Properties" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Grape.sql" />
-    <Build Include="WineyardGrape.sql" />
+    <Build Include="Ingredient.sql" />
+    <Build Include="WineyardIngredient.sql" />
     <Build Include="Food.sql" />
     <Build Include="RecommendedFood.sql" />
     <Build Include="User.sql" />
     <Build Include="Review.sql" />
+    <Build Include="WineIngredient.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WINED.refactorlog" />

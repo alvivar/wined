@@ -147,4 +147,67 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="FK_RecommendedFood_WineType_Id" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="7d8db306-cc12-4d23-8a48-a3c7e511e800" ChangeDateTime="08/09/2018 15:41:28">
+    <Property Name="ElementName" Value="[dbo].[WineGrape].[FK_WineGrape_Wine]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WineGrape]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_WineGrape_Wine_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="1f86b4e4-3f54-4569-ae39-0e3af080a94c" ChangeDateTime="08/09/2018 15:41:32">
+    <Property Name="ElementName" Value="[dbo].[WineGrape].[FK_WineGrape_Grape]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WineGrape]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_WineGrape_Grape_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b69531ea-1598-48e2-882e-16294a64aefc" ChangeDateTime="08/09/2018 15:48:21">
+    <Property Name="ElementName" Value="[dbo].[WineIngredient].[FK_WineGrape_Wine_Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WineIngredient]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_WineIngredient_Wine_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ce30ffa2-1d4e-443d-b40a-038433145452" ChangeDateTime="08/09/2018 15:48:35">
+    <Property Name="ElementName" Value="[dbo].[WineIngredient].[FK_WineGrape_Grape_Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WineIngredient]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_WineIngredient_Ingredient_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3ea6874f-4360-483e-9ca4-35c6c00b0cc1" ChangeDateTime="08/09/2018 15:55:15">
+    <Property Name="ElementName" Value="[dbo].[FK_WineyardIngredient_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[WineyardIngredient]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_WineyardIngredient_Wineyard]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a98e3991-e0f5-4d09-8c48-280f56e8a756" ChangeDateTime="08/09/2018 15:55:21">
+    <Property Name="ElementName" Value="[dbo].[FK_WineyardIngredient_ToTable_1]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[WineyardIngredient]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_WineyardIngredient_Ingredient]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d6c0f1b6-e9fa-4d92-adfb-ecc9eb572df7" ChangeDateTime="08/09/2018 15:55:28">
+    <Property Name="ElementName" Value="[dbo].[WineyardIngredient].[FK_WineyardIngredient_Wineyard_Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WineyardIngredient]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_WineyardIngredient_Wineyard_id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c049c1ba-1ae8-4e16-a700-8da8bb296bf3" ChangeDateTime="08/09/2018 15:55:31">
+    <Property Name="ElementName" Value="[dbo].[WineyardIngredient].[FK_WineyardIngredient_Wineyard_id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WineyardIngredient]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_WineyardIngredient_Wineyard_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="caf0ac0a-1c54-43ca-a2d0-27a1e1f6f52b" ChangeDateTime="08/09/2018 15:55:37">
+    <Property Name="ElementName" Value="[dbo].[WineyardIngredient].[FK_WineyardIngredient_Grape_Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[WineyardIngredient]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_WineyardIngredient_Ingredient_Id" />
+  </Operation>
 </Operations>
