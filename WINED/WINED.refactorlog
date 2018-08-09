@@ -231,4 +231,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="[FK_ReviewFood_Food]" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="93361714-2b30-4862-baa7-e9d3024276eb" ChangeDateTime="08/09/2018 19:52:03">
+    <Property Name="ElementName" Value="[dbo].[Following].[UserId, FollowerId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Following]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="387c3d67-1afa-4ceb-a3bc-950181668436" ChangeDateTime="08/09/2018 19:54:40">
+    <Property Name="ElementName" Value="[dbo].[Review].[FK_Review_Wine]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Review]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_Review_Wine_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d9626a00-49d5-465a-a621-36667534d1ad" ChangeDateTime="08/09/2018 20:01:20">
+    <Property Name="ElementName" Value="[dbo].[Following].[FollowData]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Following]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FollowDate" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="dcc859f8-e5a6-4b81-b3af-e6166f89ebfb" ChangeDateTime="08/09/2018 20:02:14">
+    <Property Name="ElementName" Value="[dbo].[Following].[bool]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Following]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="IsFollower" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c5a67ead-b4d6-4ddc-8d68-80f8b2edb6b7" ChangeDateTime="08/09/2018 20:05:28">
+    <Property Name="ElementName" Value="[dbo].[ReviewRatingType].[FK_ReviewRatingType_RatingType]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ReviewRatingType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_ReviewRatingType_RatingType_Id" />
+  </Operation>
 </Operations>
