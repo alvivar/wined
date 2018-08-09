@@ -66,6 +66,9 @@
     <Build Include="User.sql" />
     <Build Include="Review.sql" />
     <Build Include="WineIngredient.sql" />
+    <Build Include="Following.sql" />
+    <Build Include="ReviewFood.sql" />
+    <Build Include="RatingType.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WINED.refactorlog" />

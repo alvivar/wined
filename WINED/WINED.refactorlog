@@ -210,4 +210,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="FK_WineyardIngredient_Ingredient_Id" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="c2a86602-718b-4a37-aa21-6d3d6f7cbfe8" ChangeDateTime="08/09/2018 16:19:27">
+    <Property Name="ElementName" Value="[dbo].[User].[name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9547cfdf-0b27-4df1-9937-29e5f486734e" ChangeDateTime="08/09/2018 16:36:16">
+    <Property Name="ElementName" Value="[dbo].[FK_ReviewFood_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[ReviewFood]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_ReviewFood_Review]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="63c42744-1f33-439f-9c14-8e8d049ee30f" ChangeDateTime="08/09/2018 16:36:26">
+    <Property Name="ElementName" Value="[dbo].[FK_ReviewFood_ToTable_1]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[ReviewFood]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_ReviewFood_Food]" />
+  </Operation>
 </Operations>
