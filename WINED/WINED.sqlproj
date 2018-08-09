@@ -58,4 +58,24 @@
   <ItemGroup>
     <Folder Include="Properties" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Grape.sql" />
+    <Build Include="WineyardGrape.sql" />
+    <Build Include="WineTypeName.sql" />
+    <Build Include="Food.sql" />
+    <Build Include="RecommendedFood.sql" />
+    <Build Include="User.sql" />
+    <Build Include="Review.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="WINED.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Wine.sql" />
+    <Build Include="WineName.sql" />
+    <Build Include="WineType.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Wineyard.sql" />
+  </ItemGroup>
 </Project>
