@@ -61,7 +61,6 @@
   <ItemGroup>
     <Build Include="Grape.sql" />
     <Build Include="WineyardGrape.sql" />
-    <Build Include="WineTypeName.sql" />
     <Build Include="Food.sql" />
     <Build Include="RecommendedFood.sql" />
     <Build Include="User.sql" />
