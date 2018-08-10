@@ -78,6 +78,10 @@
     <Build Include="Role.sql" />
     <Build Include="Permission.sql" />
     <Build Include="RolePermission.sql" />
+    <Build Include="Address.sql" />
+    <Build Include="UserAddress.sql" />
+    <Build Include="ReviewAddress.sql" />
+    <Build Include="WineyardAddress.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WINED.refactorlog" />
