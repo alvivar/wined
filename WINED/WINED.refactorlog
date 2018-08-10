@@ -273,4 +273,60 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="PurchasePrice" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="dd0eea67-ca76-4772-9fd3-d2101052aaa7" ChangeDateTime="08/09/2018 22:53:59">
+    <Property Name="ElementName" Value="[dbo].[Review].[PostTime]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Review]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Created" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d2308f76-5abe-413a-b72d-551f5c2f46ba" ChangeDateTime="08/09/2018 23:03:38">
+    <Property Name="ElementName" Value="[dbo].[LogType].[nAME]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LogType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="25c692e8-06e2-435f-81c9-c8f34fedaa48" ChangeDateTime="08/09/2018 23:07:27">
+    <Property Name="ElementName" Value="[dbo].[Log].[FK_Log_LogLevel]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Log]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_Log_LogType_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="20f8c869-6389-4507-9d50-a0c0ad4f49b8" ChangeDateTime="08/09/2018 23:07:30">
+    <Property Name="ElementName" Value="[dbo].[Log].[FK_Log_LogLevel]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Log]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_Log_LogLevel_ID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="53156e48-fcb7-421e-a5ca-8765a57b008f" ChangeDateTime="08/09/2018 23:07:32">
+    <Property Name="ElementName" Value="[dbo].[Log].[FK_Log_LogLevel_ID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Log]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_Log_LogLevel_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c60a3f48-ee6e-4e94-a8b5-96f6d0e7736d" ChangeDateTime="08/09/2018 23:13:28">
+    <Property Name="ElementName" Value="[dbo].[Log].[IP]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Log]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="iP" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7da6a1e5-a19f-41ea-9db6-9d4a40160673" ChangeDateTime="08/09/2018 23:13:32">
+    <Property Name="ElementName" Value="[dbo].[Log].[iP]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Log]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Ip" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="34bb405a-8c5c-4b58-9746-2c7d26b919cb" ChangeDateTime="08/09/2018 23:26:41">
+    <Property Name="ElementName" Value="[dbo].[ReviewRatingType].[Rating]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ReviewRatingType]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Description" />
+  </Operation>
 </Operations>
