@@ -5,7 +5,7 @@
     [FK_Log_LogType_Id] INT NOT NULL,
     [FK_Log_LogSource_Id] INT NOT NULL,
     [Description] VARCHAR(1000) NOT NULL,
-    [User] VARCHAR(50) NOT NULL,
+    [Username] VARCHAR(50) NOT NULL,
     [Computer] VARCHAR(50) NOT NULL,
     [Ip] VARCHAR(50) NOT NULL,
     [Details] VARCHAR(1000) NULL,
