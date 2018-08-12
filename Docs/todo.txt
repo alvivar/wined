@@ -1,0 +1,9 @@
+
+    To do
+
+
+    Authentication / Oauth in the database design
+
+
+    2018/08/12 02:52 pm
+    x Import to Azure

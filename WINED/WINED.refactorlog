@@ -343,4 +343,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Username" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="c8ad37cb-28a5-445d-baa8-a64c6c8f2b84" ChangeDateTime="08/12/2018 20:00:16">
+    <Property Name="ElementName" Value="[dbo].[FK_Log_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Log]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Log_User]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6e9816e6-f02f-47f6-b1e1-739c90f2fbe2" ChangeDateTime="08/12/2018 20:00:35">
+    <Property Name="ElementName" Value="[dbo].[Log].[FK_Log_User]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Log]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_Log_User_Id" />
+  </Operation>
 </Operations>
