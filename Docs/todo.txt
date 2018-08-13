@@ -2,8 +2,13 @@
     To do
 
 
-    Authentication / Oauth in the database design
+    Changing tables Identity to (1,1)
+    Address normalization for city/province/country
+    Location should have his own table?
 
+
+    2018/08/13 05:58 am
+    x Authentication / Oauth in the database design
 
     2018/08/12 02:52 pm
     x Import to Azure

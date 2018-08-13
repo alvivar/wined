@@ -4,6 +4,6 @@
     [Username] VARCHAR(50) NOT NULL,
     [Fullname] VARCHAR(50) NOT NULL,
     [Email] VARCHAR(50) NOT NULL,
-    [Checksum] VARCHAR(50) NULL,
+    [Checksum] VARCHAR(50) NOT NULL,
     [Created] DATETIME NOT NULL 
 )
