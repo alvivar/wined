@@ -82,6 +82,9 @@
     <Build Include="UserAddress.sql" />
     <Build Include="ReviewAddress.sql" />
     <Build Include="WineyardAddress.sql" />
+    <Build Include="Authentication.sql" />
+    <Build Include="AuthenticationSource.sql" />
+    <Build Include="UserAuthentication.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="WINED.refactorlog" />

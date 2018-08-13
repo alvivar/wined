@@ -357,4 +357,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="FK_Log_User_Id" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="20aed98b-27c6-4944-9252-e04454d1f6f7" ChangeDateTime="08/13/2018 11:32:27">
+    <Property Name="ElementName" Value="[dbo].[Authentication].[FK_Authentication_User]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Authentication]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_Authentication_User_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3556d5dc-da29-4f6d-80a1-894391152b4c" ChangeDateTime="08/13/2018 11:45:46">
+    <Property Name="ElementName" Value="[dbo].[FK_Authentication_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Authentication]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Authentication_AuthenticationSource]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2edf6cf2-9fb7-426e-8e6e-456896ab7131" ChangeDateTime="08/13/2018 11:48:16">
+    <Property Name="ElementName" Value="[dbo].[FK_UserAuthentication_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[UserAuthentication]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_UserAuthentication_User]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="85111450-16a3-4ec7-8cc1-f44ee08c4dcb" ChangeDateTime="08/13/2018 11:48:22">
+    <Property Name="ElementName" Value="[dbo].[FK_UserAuthentication_ToTable_1]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[UserAuthentication]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_UserAuthentication_Authentication]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="954b9dfe-c8fc-406b-b5b5-e2b314e61fe1" ChangeDateTime="08/13/2018 11:51:11">
+    <Property Name="ElementName" Value="[dbo].[User].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Username" />
+  </Operation>
 </Operations>
