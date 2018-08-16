@@ -211,9 +211,9 @@ END
 GO
 
 
--- ---------- --
--- POPULATION --
--- ---------- --
+-- -------- ----------
+-- DATABASE POPULATION
+-- -------- ----------
 
 EXECUTE dbo.populateWineyards 1, 100
 GO
