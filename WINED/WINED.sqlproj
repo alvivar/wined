@@ -100,5 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DabataseFilling.sql" />
+    <None Include="Scripts\SimpleQuery.sql" />
+    <None Include="Scripts\DatabaseCleaning.sql" />
   </ItemGroup>
 </Project>

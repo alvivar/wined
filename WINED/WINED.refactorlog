@@ -392,4 +392,53 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Username" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="a10c219d-9a2b-46fd-83ec-5be69038d3fe" ChangeDateTime="08/14/2018 05:12:13">
+    <Property Name="ElementName" Value="[dbo].[FK_Following_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Following]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Following_UserId]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f4d684b0-e397-4096-b3f5-46fd06bf2b90" ChangeDateTime="08/14/2018 05:12:44">
+    <Property Name="ElementName" Value="[dbo].[FK_Following_UserId]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Following]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Following_Follower]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="999fa5b6-1734-43c2-b18c-a3e9934bd8b8" ChangeDateTime="08/14/2018 05:13:42">
+    <Property Name="ElementName" Value="[dbo].[FK_Following_Follower]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Following]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Following_User_Id]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2e5f8685-04da-4f0b-9a75-6957ae5cef14" ChangeDateTime="08/14/2018 05:13:47">
+    <Property Name="ElementName" Value="[dbo].[FK_Following_User_Id]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Following]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Following_User]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="e387d3e7-538b-40f4-be30-fc16dff97aec" ChangeDateTime="08/14/2018 05:13:53">
+    <Property Name="ElementName" Value="[dbo].[FK_Following_ToTable_1]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Following]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Following_Follower]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9c962019-8c61-432c-a190-b96b9676eeab" ChangeDateTime="08/14/2018 05:14:06">
+    <Property Name="ElementName" Value="[dbo].[Following].[UserId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Following]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_Following_User_Id" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2e30fbdb-b419-4f28-b4d2-77141a8480b5" ChangeDateTime="08/14/2018 05:14:16">
+    <Property Name="ElementName" Value="[dbo].[Following].[FollowerId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Following]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="FK_Following_Follower_Id" />
+  </Operation>
 </Operations>
