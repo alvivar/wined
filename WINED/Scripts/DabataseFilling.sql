@@ -31,18 +31,18 @@ GO
 -- ----------
 -- Addresses!
 
-DROP PROCEDURE IF EXISTS dbo.InsertAddress
+DROP PROCEDURE IF EXISTS dbo.insertAddress
 GO
 
-CREATE PROCEDURE dbo.InsertAddress
-    @Line1 varchar(50),
-    @Line2 varchar(50),
-    @Line3 varchar(50),
-    @City varchar(50),
-    @Province varchar(50),
-    @Country varchar(50),
-    @Details varchar(1000),
-    @Geography geography,
+CREATE PROCEDURE dbo.insertAddress
+    @Line1 VARCHAR(50),
+    @Line2 VARCHAR(50),
+    @Line3 VARCHAR(50),
+    @City VARCHAR(50),
+    @Province VARCHAR(50),
+    @Country VARCHAR(50),
+    @Details VARCHAR(1000),
+    @Geography GEOGRAPHY,
     @NewId INT = NULL OUTPUT
 AS
 BEGIN
@@ -51,6 +51,39 @@ BEGIN
     VALUES
         (@Line1, @Line2, @Line3, @City, @Province, @Country, @Details, @Geography)
     SET @NewId = SCOPE_IDENTITY()
+END
+GO
+
+
+--SET
+
+DROP PROCEDURE IF EXISTS dbo.getRandomGeographyAround
+GO
+
+CREATE PROCEDURE dbo.getRandomGeographyAround
+    @Geo GEOGRAPHY,
+    @Distance INT,
+    @NewGeo GEOGRAPHY = NULL OUTPUT
+AS
+BEGIN
+    DECLARE @r float, @t float, @w float, @x float, @y float, @u float, @v float;
+
+    SET @u = RAND();
+    SET @v = RAND();
+
+    -- 8046m = ~ 5 miles
+    SET @r = @Distance / (111300*1.0);
+    SET @w = @r * sqrt(@u);
+    SET @t = 2 * PI() * @v;
+    SET @x = @w * cos(@t);
+    SET @y = @w * sin(@t);
+    SET @x = @x / cos(@Geo.Lat);
+
+    SET @NewGeo = GEOGRAPHY::STPointFromText('POINT(' + CAST(@Geo.Long + @x AS VARCHAR(MAX)) + ' ' + CAST(@Geo.Lat + @y AS VARCHAR(MAX)) + ')', 4326)
+
+--Convert the distance back to miles to validate
+-- SELECT @Geo.STDistance(@NewGeo) / 1609.34
+
 END
 GO
 
@@ -79,6 +112,10 @@ FROM Wineyard
 WHILE @Quantity > 0
 BEGIN
 
+    DECLARE @OriginGeo GEOGRAPHY = GEOGRAPHY::Point('47.65100', '-122.34900', '4326')
+    DECLARE @NewGeo GEOGRAPHY
+    EXECUTE dbo.getRandomGeographyAround @OriginGeo, 100000, @NewGeo = @NewGeo OUTPUT
+
     DECLARE @LocationName VARCHAR(50) = 'Wineyard' + LTRIM(STR(@Index))
     DECLARE @Line1 varchar(50) = @LocationName + '_Line1'
     DECLARE @Line2 varchar(50) = @LocationName + '_Line2'
@@ -87,9 +124,9 @@ BEGIN
     DECLARE @Province varchar(50) = @LocationName + '_Province'
     DECLARE @Country varchar(50) = @LocationName + '_Country'
     DECLARE @Details varchar(1000) = @LocationName + '_Details'
-    DECLARE @Geography geography = geography::Point('47.65100', '-122.34900', '4326')
+    DECLARE @Geography geography = @NewGeo
 
-    EXEC dbo.InsertAddress
+    EXECUTE dbo.insertAddress
         @Line1,
         @Line2,
         @Line3,
