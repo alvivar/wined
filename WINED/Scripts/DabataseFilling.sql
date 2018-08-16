@@ -1,7 +1,6 @@
 ﻿
-
-use WINED
-go
+USE WINED
+GO
 
 
 -- ----------
@@ -216,10 +215,10 @@ GO
 -- POPULATION --
 -- ---------- --
 
-Execute dbo.populateWineyards 1, 100
+EXECUTE dbo.populateWineyards 1, 100
 GO
 
-Execute dbo.populateWineyardsLocations
+EXECUTE dbo.populateWineyardsLocations
 GO
 
 EXECUTE dbo.populateWineTypes 1, 100
