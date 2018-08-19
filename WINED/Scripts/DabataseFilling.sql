@@ -11,7 +11,9 @@ GO
 
 CREATE PROCEDURE dbo.populateWineyards
     @Index INT,
-    @Quantity INT
+    @Quantity INT,
+    @MinAntiquity INT,
+    @MaxAntiquity INT
 AS
 WHILE @Index <= @Quantity
     BEGIN
@@ -20,7 +22,7 @@ WHILE @Index <= @Quantity
     VALUES
         (
             'Wineyard' + LTRIM(STR(@Index)),
-            ROUND(((120 - 3 - 1) * RAND() + 3), 0)
+            ROUND(((@MaxAntiquity - @MinAntiquity - 1) * RAND() + @MinAntiquity), 0)
         )
     SET @Index = @Index + 1
 END
@@ -94,6 +96,8 @@ DROP PROCEDURE IF EXISTS dbo.populateWineyardsLocations
 GO
 
 CREATE PROCEDURE dbo.populateWineyardsLocations
+    @OriginGeo GEOGRAPHY,
+    @Distance INT
 AS
 
 DECLARE @Index INT
@@ -111,9 +115,8 @@ FROM Wineyard
 WHILE @Quantity > 0
 BEGIN
 
-    DECLARE @OriginGeo GEOGRAPHY = GEOGRAPHY::Point('47.65100', '-122.34900', '4326')
     DECLARE @NewGeo GEOGRAPHY
-    EXECUTE dbo.getRandomGeographyAround @OriginGeo, 100000, @NewGeo = @NewGeo OUTPUT
+    EXECUTE dbo.getRandomGeographyAround @OriginGeo, @Distance, @NewGeo = @NewGeo OUTPUT
 
     DECLARE @LocationName VARCHAR(50) = 'Wineyard' + LTRIM(STR(@Index))
     DECLARE @Line1 varchar(50) = @LocationName + '_Line1'
@@ -182,31 +185,55 @@ DROP PROCEDURE IF EXISTS dbo.populateWines
 GO
 
 CREATE PROCEDURE dbo.populateWines
+    @index INT,
+    @quantity INT,
+    @minYear INT,
+    @maxYear INT
 AS
 
-DECLARE @index INT
-DECLARE @quantity INT
-DECLARE @wineyards INT
-DECLARE @winetypes INT
+-- Wineyard limits
+DECLARE @wineyardId INT
+DECLARE @wineyardCount INT
 
-SET @index = 0
-SET @quantity = 2000
-SET @wineyards = 100
-SET @winetypes = 50
+SELECT TOP (1)
+    @wineyardId = [id]
+FROM Wineyard
+SELECT
+    @wineyardCount = count(*)
+FROM Wineyard
 
-WHILE @index < @quantity
+-- Winetype limits
+DECLARE @winetypeId INT
+DECLARE @winetypeCount INT
+
+SELECT TOP (1)
+    @winetypeId = [id]
+FROM Winetype
+SELECT
+    @winetypeCount = count(*)
+FROM Winetype
+
+-- Wines
+WHILE @index <= @quantity
 BEGIN
+
+    DECLARE @randomWineyard INT = @wineyardId + ROUND(((@wineyardCount - 0 - 1) * RAND() + 0), 0)
+    DECLARE @randomWinetype INT = @winetypeId + ROUND(((@winetypeCount - 0 - 1) * RAND() + 0), 0)
+    DECLARE @randomYear INT = ((@maxYear - @minYear - 1) * RAND() + @minYear)
+
     INSERT dbo.Wine
         (FK_Wine_Wineyard_Id, FK_Wine_WineType_Id, Name, Description, Year)
     VALUES
         (
-            ROUND(((@wineyards - 0 - 1) * RAND() + 0), 0),
-            ROUND(((@winetypes - 0 - 1) * RAND() + 0), 0),
+            @randomWineyard,
+            @randomWinetype,
             'Wine' + LTRIM(STR(@index)) + '_Name',
             'Wine' + LTRIM(STR(@index)) + '_Description',
-            ((2018 - 1800 - 1) * RAND() + 1800)
+            @randomYear
 	    )
+
     SET @index = @index + 1
+
 END
 GO
 
@@ -215,14 +242,15 @@ GO
 -- DATABASE POPULATION
 -- -------- ----------
 
-EXECUTE dbo.populateWineyards 1, 100
+EXECUTE dbo.populateWineyards 1, 100, 1, 60
 GO
 
-EXECUTE dbo.populateWineyardsLocations
+DECLARE @OriginPoint GEOGRAPHY = GEOGRAPHY::Point('47.65100', '-122.34900', '4326')
+EXECUTE dbo.populateWineyardsLocations @OriginPoint, 20000
 GO
 
-EXECUTE dbo.populateWineTypes 1, 100
+EXECUTE dbo.populateWineTypes 1, 40
 GO
 
--- EXECUTE dbo.populateWines
--- GO
+EXECUTE dbo.populateWines 1, 2000, 1970, 2016
+GO
