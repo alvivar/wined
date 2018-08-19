@@ -191,9 +191,11 @@ CREATE PROCEDURE dbo.populateWines
     @maxYear INT
 AS
 
--- Wineyard limits
+-- FK Limits detection
 DECLARE @wineyardId INT
 DECLARE @wineyardCount INT
+DECLARE @winetypeId INT
+DECLARE @winetypeCount INT
 
 SELECT TOP (1)
     @wineyardId = [id]
@@ -201,10 +203,6 @@ FROM Wineyard
 SELECT
     @wineyardCount = count(*)
 FROM Wineyard
-
--- Winetype limits
-DECLARE @winetypeId INT
-DECLARE @winetypeCount INT
 
 SELECT TOP (1)
     @winetypeId = [id]
