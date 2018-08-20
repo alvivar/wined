@@ -181,7 +181,7 @@ GO
 -- ------
 -- Wines!
 
-DROP PROCEDURE IF EXISTS dbo.populateWines
+DROP PROCEDURE IF EXISTS [dbo].[populateWines]
 GO
 
 CREATE PROCEDURE dbo.populateWines
@@ -236,19 +236,161 @@ END
 GO
 
 
+-- ------
+-- Users!
+
+DROP PROCEDURE IF EXISTS dbo.insertUser
+GO
+
+CREATE PROCEDURE dbo.insertUser
+    @userName VARCHAR(50),
+    @name VARCHAR(50),
+    @lastName VARCHAR(50),
+    @email VARCHAR(50),
+    @newId INT = NULL OUTPUT
+AS
+BEGIN
+    DECLARE @created DATETIME = CURRENT_TIMESTAMP
+
+    INSERT INTO [dbo].[User]
+        (UserName, Name, LastName, Email, Created)
+    VALUES
+        (@userName, @name, @lastName, @email, @created)
+
+    SET @newId = SCOPE_IDENTITY()
+END
+GO
+
+
+-- -------- ------
+-- Populate Users!
+
+DROP PROCEDURE IF EXISTS dbo.populateUsers
+GO
+
+CREATE PROCEDURE dbo.populateUsers
+    @index INT,
+    @quantity INT
+AS
+
+WHILE @index <= @quantity
+BEGIN
+    DECLARE @username VARCHAR(50) = 'user' + LTRIM(STR(@index)) + '_UserName'
+    DECLARE @name VARCHAR(50) = 'user' + LTRIM(STR(@index)) + '_Name'
+    DECLARE @lastName VARCHAR(50) = 'user' + LTRIM(STR(@index)) + '_LastName'
+    DECLARE @email VARCHAR(50) = 'user' + LTRIM(STR(@index)) + '@email.com'
+
+    DECLARE @userId INT
+    EXECUTE [dbo].[insertUser]
+        @username,
+        @name,
+        @lastName,
+        @email,
+        @newId = @userId OUTPUT
+
+    -- TODO Insert address/location
+
+    SET @index = @index + 1
+END
+GO
+
+
+-- --------
+-- Reviews!
+
+DROP PROCEDURE IF EXISTS dbo.populateReviewsPerWine
+GO
+
+CREATE PROCEDURE dbo.populateReviewsPerWine
+    @minEntries INT,
+    @maxEntries INT
+AS
+
+DECLARE @wineId INT
+DECLARE @wineCount INT
+DECLARE @userId INT
+
+SELECT TOP (1)
+    @wineId = [id]
+FROM [dbo].[Wine]
+
+SELECT
+    @wineCount = count(*)
+FROM [dbo].[Wine]
+
+SELECT TOP (1)
+    @userId = [id]
+FROM [dbo].[User]
+
+WHILE @wineCount > 0
+BEGIN
+
+    DECLARE @userIdIndex INT = @userId
+    DECLARE @entries INT = ROUND(((@maxEntries - @minEntries - 1) * RAND() + @minEntries), 0)
+
+    WHILE @entries > 0
+    BEGIN
+        DECLARE @description VARCHAR(1000) =  'UserId' + LTRIM(STR(@userIdIndex)) + '_Description'
+        DECLARE @rating INT = ROUND(((5 - 0 - 1) * RAND() + 0), 0)
+        DECLARE @purchasePrice NUMERIC = ROUND(((5 - 0 - 1) * RAND() + 0), 0)
+        DECLARE @computer VARCHAR(50) =  'UserId' + LTRIM(STR(@userIdIndex)) + '_Computer'
+        DECLARE @username VARCHAR(50) =  'UserId' + LTRIM(STR(@userIdIndex)) + '_Username'
+        DECLARE @postTime DATETIME = CURRENT_TIMESTAMP
+        DECLARE @checksum VARCHAR(50) = Checksum(
+            LTRIM(STR(@userIdIndex)) +
+            LTRIM(STR(@wineId)) +
+            @description +
+            LTRIM(STR(@rating)) +
+            LTRIM(STR(@purchasePrice)) +
+            @computer +
+            @username)
+
+        INSERT [dbo].[Review]
+            (FK_Review_User_Id, FK_Review_Wine_Id, Description, Rating, PurchasePrice, Computer, Username, PostTime, Checksum)
+        VALUES
+            (
+                @userIdIndex,
+                @wineId,
+                @description,
+                @rating,
+                @purchasePrice,
+                @computer,
+                @username,
+                @postTime,
+                @checksum
+            )
+
+        -- TODO Insert Address/Location
+
+        SET @userIdIndex = @userIdIndex + 1
+        SET @entries = @entries - 1
+    END
+
+    SET @wineId = @wineId + 1
+    SET @wineCount = @wineCount - 1
+END
+GO
+
+
 -- -------- ----------
 -- DATABASE POPULATION
 -- -------- ----------
 
-EXECUTE dbo.populateWineyards 1, 100, 1, 60
+EXECUTE [dbo].[populateWineyards] 1, 1, 1, 60
 GO
 
-DECLARE @OriginPoint GEOGRAPHY = GEOGRAPHY::Point('47.65100', '-122.34900', '4326')
-EXECUTE dbo.populateWineyardsLocations @OriginPoint, 20000
+DECLARE @originPoint GEOGRAPHY = GEOGRAPHY::Point('47.65100', '-122.34900', '4326')
+EXECUTE [dbo].[populateWineyardsLocations] @originPoint, 20000
 GO
 
-EXECUTE dbo.populateWineTypes 1, 40
+EXECUTE [dbo].[populateWineTypes] 1, 1
 GO
 
-EXECUTE dbo.populateWines 1, 2000, 1970, 2016
+EXECUTE [dbo].[populateWines] 1, 1, 1970, 2016
+GO
+
+EXECUTE [dbo].[populateUsers] 1, 5
+GO
+
+EXECUTE [dbo].[populateReviewsPerWine] 0, 5
 GO

@@ -441,4 +441,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="FK_Following_Follower_Id" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="dddf5cfd-819d-4458-9957-e76e3fff8df4" ChangeDateTime="08/19/2018 21:21:20">
+    <Property Name="ElementName" Value="[dbo].[User].[Fullname]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[User]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Name" />
+  </Operation>
 </Operations>
