@@ -6,10 +6,10 @@ GO
 -- ----------
 -- Wineyards!
 
-DROP PROCEDURE IF EXISTS dbo.populateWineyards
+DROP PROCEDURE IF EXISTS [dbo].[populateWineyards]
 GO
 
-CREATE PROCEDURE dbo.populateWineyards
+CREATE PROCEDURE [dbo].[populateWineyards]
     @index INT,
     @quantity INT,
     @minAntiquity INT,
@@ -17,7 +17,7 @@ CREATE PROCEDURE dbo.populateWineyards
 AS
 WHILE @index <= @quantity
     BEGIN
-    INSERT dbo.Wineyard
+    INSERT [dbo].[Wineyard]
         (Name, Antiquity)
     VALUES
         (
@@ -32,10 +32,10 @@ GO
 -- ----------
 -- Addresses!
 
-DROP PROCEDURE IF EXISTS dbo.insertAddress
+DROP PROCEDURE IF EXISTS [dbo].[insertAddress]
 GO
 
-CREATE PROCEDURE dbo.insertAddress
+CREATE PROCEDURE [dbo].[insertAddress]
     @line1 VARCHAR(50),
     @line2 VARCHAR(50),
     @line3 VARCHAR(50),
@@ -59,10 +59,10 @@ GO
 -- ------ ---------
 -- Random geography
 
-DROP PROCEDURE IF EXISTS dbo.getRandomGeographyAround
+DROP PROCEDURE IF EXISTS [dbo].[getRandomGeographyAround]
 GO
 
-CREATE PROCEDURE dbo.getRandomGeographyAround
+CREATE PROCEDURE [dbo].[getRandomGeographyAround]
     @geo GEOGRAPHY,
     @distance INT,
     @newGeo GEOGRAPHY = NULL OUTPUT
@@ -93,10 +93,10 @@ GO
 -- --------- ----------
 -- Wineyards locations!
 
-DROP PROCEDURE IF EXISTS dbo.populateWineyardsLocations
+DROP PROCEDURE IF EXISTS [dbo].[populateWineyardsLocations]
 GO
 
-CREATE PROCEDURE dbo.populateWineyardsLocations
+CREATE PROCEDURE [dbo].[populateWineyardsLocations]
     @originGeo GEOGRAPHY,
     @distance INT
 AS
@@ -117,7 +117,7 @@ WHILE @quantity > 0
 BEGIN
 
     DECLARE @newGeo GEOGRAPHY
-    EXECUTE dbo.getRandomGeographyAround @originGeo, @distance, @newGeo = @newGeo OUTPUT
+    EXECUTE [dbo].[getRandomGeographyAround] @originGeo, @distance, @newGeo = @newGeo OUTPUT
 
     DECLARE @LocationName VARCHAR(50) = 'Wineyard' + LTRIM(STR(@index))
     DECLARE @line1 varchar(50) = @LocationName + '_Line1'
@@ -129,7 +129,7 @@ BEGIN
     DECLARE @details varchar(1000) = @LocationName + '_Details'
     DECLARE @geography geography = @newGeo
 
-    EXECUTE dbo.insertAddress
+    EXECUTE [dbo].[insertAddress]
         @line1,
         @line2,
         @line3,
@@ -140,7 +140,7 @@ BEGIN
         @geography,
         @newId = @newId OUTPUT
 
-    INSERT dbo.WineyardAddress
+    INSERT [dbo].[WineyardAddress]
         ([FK_WineyardAddress_Wineyard_Id], [FK_WineyardAddress_Address_Id])
     VALUES
         (
@@ -158,17 +158,17 @@ GO
 -- -----------
 -- Wine types!
 
-DROP PROCEDURE IF EXISTS dbo.populateWineTypes
+DROP PROCEDURE IF EXISTS [dbo].[populateWineTypes]
 GO
 
-CREATE PROCEDURE dbo.populateWineTypes
+CREATE PROCEDURE [dbo].[populateWineTypes]
     @index INT,
     @quantity INT
 AS
 
 WHILE @index <= @quantity
 BEGIN
-    INSERT dbo.WineType
+    INSERT [dbo].[WineType]
         (Name)
     VALUES
         (
@@ -185,7 +185,7 @@ GO
 DROP PROCEDURE IF EXISTS [dbo].[populateWines]
 GO
 
-CREATE PROCEDURE dbo.populateWines
+CREATE PROCEDURE [dbo].[populateWines]
     @index INT,
     @quantity INT,
     @minYear INT,
@@ -220,7 +220,7 @@ BEGIN
     DECLARE @randomWinetype INT = @winetypeId + ROUND(((@winetypeCount - 0 - 1) * RAND() + 0), 0)
     DECLARE @randomYear INT = ((@maxYear - @minYear - 1) * RAND() + @minYear)
 
-    INSERT dbo.Wine
+    INSERT [dbo].[Wine]
         (FK_Wine_Wineyard_Id, FK_Wine_WineType_Id, Name, Description, Year)
     VALUES
         (
@@ -240,10 +240,10 @@ GO
 -- ------
 -- Users!
 
-DROP PROCEDURE IF EXISTS dbo.insertUser
+DROP PROCEDURE IF EXISTS [dbo].[insertUser]
 GO
 
-CREATE PROCEDURE dbo.insertUser
+CREATE PROCEDURE [dbo].[insertUser]
     @userName VARCHAR(50),
     @name VARCHAR(50),
     @lastName VARCHAR(50),
@@ -266,10 +266,10 @@ GO
 -- -------- ------
 -- Populate Users!
 
-DROP PROCEDURE IF EXISTS dbo.populateUsers
+DROP PROCEDURE IF EXISTS [dbo].[populateUsers]
 GO
 
-CREATE PROCEDURE dbo.populateUsers
+CREATE PROCEDURE [dbo].[populateUsers]
     @index INT,
     @quantity INT
 AS
@@ -299,10 +299,10 @@ GO
 -- --------
 -- Reviews!
 
-DROP PROCEDURE IF EXISTS dbo.populateReviewsPerWine
+DROP PROCEDURE IF EXISTS [dbo].[populateReviewsPerWine]
 GO
 
-CREATE PROCEDURE dbo.populateReviewsPerWine
+CREATE PROCEDURE [dbo].[populateReviewsPerWine]
     @minEntries INT,
     @maxEntries INT,
     @originGeo GEOGRAPHY,
@@ -382,7 +382,7 @@ BEGIN
         DECLARE @geography geography = @newGeo
 
         DECLARE @newAddressId INT
-        EXECUTE dbo.insertAddress
+        EXECUTE [dbo].[insertAddress]
             @line1,
             @line2,
             @line3,
@@ -393,7 +393,7 @@ BEGIN
             @geography,
             @newId = @newAddressId OUTPUT
 
-        INSERT dbo.ReviewAddress
+        INSERT [dbo].[ReviewAddress]
             ([FK_ReviewAddress_Review_Id], [FK_ReviewAddress_Address_Id])
         VALUES
             (
