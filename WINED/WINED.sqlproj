@@ -58,49 +58,54 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Scripts" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Tables" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Ingredient.sql" />
-    <Build Include="WineyardIngredient.sql" />
-    <Build Include="Food.sql" />
-    <Build Include="RecommendedFood.sql" />
-    <Build Include="User.sql" />
-    <Build Include="Review.sql" />
-    <Build Include="WineIngredient.sql" />
-    <Build Include="Following.sql" />
-    <Build Include="ReviewFood.sql" />
-    <Build Include="RatingType.sql" />
-    <Build Include="ReviewRatingType.sql" />
-    <Build Include="Log.sql" />
-    <Build Include="LogSource.sql" />
-    <Build Include="LogType.sql" />
-    <Build Include="LogLevel.sql" />
-    <Build Include="UserRole.sql" />
-    <Build Include="Role.sql" />
-    <Build Include="Permission.sql" />
-    <Build Include="RolePermission.sql" />
-    <Build Include="Address.sql" />
-    <Build Include="UserAddress.sql" />
-    <Build Include="ReviewAddress.sql" />
-    <Build Include="WineyardAddress.sql" />
-    <Build Include="Authentication.sql" />
-    <Build Include="AuthenticationSource.sql" />
-    <Build Include="UserAuthentication.sql" />
+    <Build Include="Stored Procedures\getWinesAndWineyards.sql" />
+    <Build Include="Tables\Address.sql" />
+    <Build Include="Tables\Authentication.sql" />
+    <Build Include="Tables\AuthenticationSource.sql" />
+    <Build Include="Tables\Following.sql" />
+    <Build Include="Tables\Food.sql" />
+    <Build Include="Tables\Ingredient.sql" />
   </ItemGroup>
   <ItemGroup>
-    <RefactorLog Include="WINED.refactorlog" />
+    <RefactorLog Include="Tables\WINED.refactorlog" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Wine.sql" />
-    <Build Include="WineName.sql" />
-    <Build Include="WineType.sql" />
+    <Build Include="Tables\Log.sql" />
+    <Build Include="Tables\LogLevel.sql" />
+    <Build Include="Tables\LogSource.sql" />
+    <Build Include="Tables\LogType.sql" />
+    <Build Include="Tables\Permission.sql" />
+    <Build Include="Tables\RatingType.sql" />
+    <Build Include="Tables\RecommendedFood.sql" />
+    <Build Include="Tables\Review.sql" />
+    <Build Include="Tables\ReviewAddress.sql" />
+    <Build Include="Tables\ReviewFood.sql" />
+    <Build Include="Tables\ReviewRatingType.sql" />
+    <Build Include="Tables\Role.sql" />
+    <Build Include="Tables\RolePermission.sql" />
+    <Build Include="Tables\User.sql" />
+    <Build Include="Tables\UserAddress.sql" />
+    <Build Include="Tables\UserAuthentication.sql" />
+    <Build Include="Tables\UserRole.sql" />
+    <Build Include="Tables\Wine.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Wineyard.sql" />
+    <Build Include="Tables\WineIngredient.sql" />
+    <Build Include="Tables\WineName.sql" />
+    <Build Include="Tables\WineType.sql" />
+    <Build Include="Tables\Wineyard.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\DabataseFilling.sql" />
     <None Include="Scripts\SimpleQuery.sql" />
     <None Include="Scripts\DatabaseCleaning.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Tables\WineyardAddress.sql" />
+    <Build Include="Tables\WineyardIngredient.sql" />
   </ItemGroup>
 </Project>
