@@ -6,8 +6,8 @@ GO
 -- ----------
 -- Wineyards!
 
-DROP PROCEDURE IF EXISTS [dbo].[populateWineyards]
-GO
+-- DROP PROCEDURE IF EXISTS [dbo].[populateWineyards]
+-- GO
 
 CREATE PROCEDURE [dbo].[populateWineyards]
     @index INT,
@@ -32,8 +32,8 @@ GO
 -- ----------
 -- Addresses!
 
-DROP PROCEDURE IF EXISTS [dbo].[insertAddress]
-GO
+-- DROP PROCEDURE IF EXISTS [dbo].[insertAddress]
+-- GO
 
 CREATE PROCEDURE [dbo].[insertAddress]
     @line1 VARCHAR(50),
@@ -59,8 +59,8 @@ GO
 -- ------ ---------
 -- Random geography
 
-DROP PROCEDURE IF EXISTS [dbo].[getRandomGeographyAround]
-GO
+-- DROP PROCEDURE IF EXISTS [dbo].[getRandomGeographyAround]
+-- GO
 
 CREATE PROCEDURE [dbo].[getRandomGeographyAround]
     @geo GEOGRAPHY,
@@ -93,8 +93,8 @@ GO
 -- --------- ----------
 -- Wineyards locations!
 
-DROP PROCEDURE IF EXISTS [dbo].[populateWineyardsLocations]
-GO
+-- DROP PROCEDURE IF EXISTS [dbo].[populateWineyardsLocations]
+-- GO
 
 CREATE PROCEDURE [dbo].[populateWineyardsLocations]
     @originGeo GEOGRAPHY,
@@ -158,8 +158,8 @@ GO
 -- -----------
 -- Wine types!
 
-DROP PROCEDURE IF EXISTS [dbo].[populateWineTypes]
-GO
+-- DROP PROCEDURE IF EXISTS [dbo].[populateWineTypes]
+-- GO
 
 CREATE PROCEDURE [dbo].[populateWineTypes]
     @index INT,
@@ -182,8 +182,8 @@ GO
 -- ------
 -- Wines!
 
-DROP PROCEDURE IF EXISTS [dbo].[populateWines]
-GO
+-- DROP PROCEDURE IF EXISTS [dbo].[populateWines]
+-- GO
 
 CREATE PROCEDURE [dbo].[populateWines]
     @index INT,
@@ -240,8 +240,8 @@ GO
 -- ------
 -- Users!
 
-DROP PROCEDURE IF EXISTS [dbo].[insertUser]
-GO
+-- DROP PROCEDURE IF EXISTS [dbo].[insertUser]
+-- GO
 
 CREATE PROCEDURE [dbo].[insertUser]
     @userName VARCHAR(50),
@@ -266,8 +266,8 @@ GO
 -- -------- ------
 -- Populate Users!
 
-DROP PROCEDURE IF EXISTS [dbo].[populateUsers]
-GO
+-- DROP PROCEDURE IF EXISTS [dbo].[populateUsers]
+-- GO
 
 CREATE PROCEDURE [dbo].[populateUsers]
     @index INT,
@@ -299,8 +299,8 @@ GO
 -- --------
 -- Reviews!
 
-DROP PROCEDURE IF EXISTS [dbo].[populateReviewsPerWine]
-GO
+-- DROP PROCEDURE IF EXISTS [dbo].[populateReviewsPerWine]
+-- GO
 
 CREATE PROCEDURE [dbo].[populateReviewsPerWine]
     @minEntries INT,

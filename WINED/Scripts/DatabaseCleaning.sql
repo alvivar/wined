@@ -1,4 +1,14 @@
-﻿DELETE FROM [dbo].[ReviewAddress]
+﻿DROP PROCEDURE IF EXISTS [dbo].[populateWineyards]
+DROP PROCEDURE IF EXISTS [dbo].[insertAddress]
+DROP PROCEDURE IF EXISTS [dbo].[getRandomGeographyAround]
+DROP PROCEDURE IF EXISTS [dbo].[populateWineyardsLocations]
+DROP PROCEDURE IF EXISTS [dbo].[populateWineTypes]
+DROP PROCEDURE IF EXISTS [dbo].[populateWines]
+DROP PROCEDURE IF EXISTS [dbo].[insertUser]
+DROP PROCEDURE IF EXISTS [dbo].[populateUsers]
+DROP PROCEDURE IF EXISTS [dbo].[populateReviewsPerWine]
+
+DELETE FROM [dbo].[ReviewAddress]
 DELETE FROM [dbo].[WineyardAddress]
 
 DELETE FROM [dbo].[Review]
