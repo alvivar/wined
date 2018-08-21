@@ -433,5 +433,5 @@ EXECUTE [dbo].[populateUsers] 1, 5
 GO
 
 DECLARE @originPoint GEOGRAPHY = GEOGRAPHY::Point('9.945736', '-84.055214', '4326')
-EXECUTE [dbo].[populateReviewsPerWine] 0, 5, @originPoint, 100000
+EXECUTE [dbo].[populateReviewsPerWine] 0, 6, @originPoint, 100000
 GO
