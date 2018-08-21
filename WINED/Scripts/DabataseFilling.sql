@@ -10,21 +10,21 @@ DROP PROCEDURE IF EXISTS dbo.populateWineyards
 GO
 
 CREATE PROCEDURE dbo.populateWineyards
-    @Index INT,
-    @Quantity INT,
-    @MinAntiquity INT,
-    @MaxAntiquity INT
+    @index INT,
+    @quantity INT,
+    @minAntiquity INT,
+    @maxAntiquity INT
 AS
-WHILE @Index <= @Quantity
+WHILE @index <= @quantity
     BEGIN
     INSERT dbo.Wineyard
         (Name, Antiquity)
     VALUES
         (
-            'Wineyard' + LTRIM(STR(@Index)),
-            ROUND(((@MaxAntiquity - @MinAntiquity - 1) * RAND() + @MinAntiquity), 0)
+            'Wineyard' + LTRIM(STR(@index)),
+            ROUND(((@maxAntiquity - @minAntiquity - 1) * RAND() + @minAntiquity), 0)
         )
-    SET @Index = @Index + 1
+    SET @index = @index + 1
 END
 GO
 
@@ -36,35 +36,36 @@ DROP PROCEDURE IF EXISTS dbo.insertAddress
 GO
 
 CREATE PROCEDURE dbo.insertAddress
-    @Line1 VARCHAR(50),
-    @Line2 VARCHAR(50),
-    @Line3 VARCHAR(50),
-    @City VARCHAR(50),
-    @Province VARCHAR(50),
-    @Country VARCHAR(50),
-    @Details VARCHAR(1000),
-    @Geography GEOGRAPHY,
-    @NewId INT = NULL OUTPUT
+    @line1 VARCHAR(50),
+    @line2 VARCHAR(50),
+    @line3 VARCHAR(50),
+    @city VARCHAR(50),
+    @province VARCHAR(50),
+    @country VARCHAR(50),
+    @details VARCHAR(1000),
+    @geography GEOGRAPHY,
+    @newId INT = NULL OUTPUT
 AS
 BEGIN
     INSERT INTO [dbo].[Address]
         (Line1, Line2, Line3, City, Province, Country, Details, Geography)
     VALUES
-        (@Line1, @Line2, @Line3, @City, @Province, @Country, @Details, @Geography)
-    SET @NewId = SCOPE_IDENTITY()
+        (@line1, @line2, @line3, @city, @province, @country, @details, @geography)
+    SET @newId = SCOPE_IDENTITY()
 END
 GO
 
 
---SET
+-- ------ ---------
+-- Random geography
 
 DROP PROCEDURE IF EXISTS dbo.getRandomGeographyAround
 GO
 
 CREATE PROCEDURE dbo.getRandomGeographyAround
-    @Geo GEOGRAPHY,
-    @Distance INT,
-    @NewGeo GEOGRAPHY = NULL OUTPUT
+    @geo GEOGRAPHY,
+    @distance INT,
+    @newGeo GEOGRAPHY = NULL OUTPUT
 AS
 BEGIN
     DECLARE @r float, @t float, @w float, @x float, @y float, @u float, @v float;
@@ -73,17 +74,17 @@ BEGIN
     SET @v = RAND();
 
     -- 8046m = ~ 5 miles
-    SET @r = @Distance / (111300*1.0);
+    SET @r = @distance / (111300*1.0);
     SET @w = @r * sqrt(@u);
     SET @t = 2 * PI() * @v;
     SET @x = @w * cos(@t);
     SET @y = @w * sin(@t);
-    SET @x = @x / cos(@Geo.Lat);
+    SET @x = @x / cos(@geo.Lat);
 
-    SET @NewGeo = GEOGRAPHY::STPointFromText('POINT(' + CAST(@Geo.Long + @x AS VARCHAR(MAX)) + ' ' + CAST(@Geo.Lat + @y AS VARCHAR(MAX)) + ')', 4326)
+    SET @newGeo = GEOGRAPHY::STPointFromText('POINT(' + CAST(@geo.Long + @x AS VARCHAR(MAX)) + ' ' + CAST(@geo.Lat + @y AS VARCHAR(MAX)) + ')', 4326)
 
 --Convert the distance back to miles to validate
--- SELECT @Geo.STDistance(@NewGeo) / 1609.34
+-- SELECT @geo.STDistance(@newGeo) / 1609.34
 
 END
 GO
@@ -96,59 +97,59 @@ DROP PROCEDURE IF EXISTS dbo.populateWineyardsLocations
 GO
 
 CREATE PROCEDURE dbo.populateWineyardsLocations
-    @OriginGeo GEOGRAPHY,
-    @Distance INT
+    @originGeo GEOGRAPHY,
+    @distance INT
 AS
 
-DECLARE @Index INT
-DECLARE @Quantity INT
-DECLARE @NewId INT
+DECLARE @index INT
+DECLARE @quantity INT
+DECLARE @newId INT
 
 SELECT TOP (1)
-    @Index = [id]
+    @index = [id]
 FROM Wineyard
 
 SELECT
-    @Quantity = count(*)
+    @quantity = count(*)
 FROM Wineyard
 
-WHILE @Quantity > 0
+WHILE @quantity > 0
 BEGIN
 
-    DECLARE @NewGeo GEOGRAPHY
-    EXECUTE dbo.getRandomGeographyAround @OriginGeo, @Distance, @NewGeo = @NewGeo OUTPUT
+    DECLARE @newGeo GEOGRAPHY
+    EXECUTE dbo.getRandomGeographyAround @originGeo, @distance, @newGeo = @newGeo OUTPUT
 
-    DECLARE @LocationName VARCHAR(50) = 'Wineyard' + LTRIM(STR(@Index))
-    DECLARE @Line1 varchar(50) = @LocationName + '_Line1'
-    DECLARE @Line2 varchar(50) = @LocationName + '_Line2'
-    DECLARE @Line3 varchar(50) = @LocationName + '_Line3'
-    DECLARE @City varchar(50) = @LocationName + '_City'
-    DECLARE @Province varchar(50) = @LocationName + '_Province'
-    DECLARE @Country varchar(50) = @LocationName + '_Country'
-    DECLARE @Details varchar(1000) = @LocationName + '_Details'
-    DECLARE @Geography geography = @NewGeo
+    DECLARE @LocationName VARCHAR(50) = 'Wineyard' + LTRIM(STR(@index))
+    DECLARE @line1 varchar(50) = @LocationName + '_Line1'
+    DECLARE @line2 varchar(50) = @LocationName + '_Line2'
+    DECLARE @line3 varchar(50) = @LocationName + '_Line3'
+    DECLARE @city varchar(50) = @LocationName + '_City'
+    DECLARE @province varchar(50) = @LocationName + '_Province'
+    DECLARE @country varchar(50) = @LocationName + '_Country'
+    DECLARE @details varchar(1000) = @LocationName + '_Details'
+    DECLARE @geography geography = @newGeo
 
     EXECUTE dbo.insertAddress
-        @Line1,
-        @Line2,
-        @Line3,
-        @City,
-        @Province,
-        @Country,
-        @Details,
-        @Geography,
-        @NewId = @NewId OUTPUT
+        @line1,
+        @line2,
+        @line3,
+        @city,
+        @province,
+        @country,
+        @details,
+        @geography,
+        @newId = @newId OUTPUT
 
     INSERT dbo.WineyardAddress
         ([FK_WineyardAddress_Wineyard_Id], [FK_WineyardAddress_Address_Id])
     VALUES
         (
-            @Index,
-            @NewId
+            @index,
+            @newId
         )
 
-    SET @Index = @Index + 1
-    SET @Quantity = @Quantity - 1
+    SET @index = @index + 1
+    SET @quantity = @quantity - 1
 
 END
 GO
@@ -161,19 +162,19 @@ DROP PROCEDURE IF EXISTS dbo.populateWineTypes
 GO
 
 CREATE PROCEDURE dbo.populateWineTypes
-    @Index INT,
-    @Quantity INT
+    @index INT,
+    @quantity INT
 AS
 
-WHILE @Index <= @Quantity
+WHILE @index <= @quantity
 BEGIN
     INSERT dbo.WineType
         (Name)
     VALUES
         (
-            'WineType' + LTRIM(STR(@Index))
+            'WineType' + LTRIM(STR(@index))
         )
-    SET @Index = @Index + 1
+    SET @index = @index + 1
 END
 GO
 
@@ -303,7 +304,9 @@ GO
 
 CREATE PROCEDURE dbo.populateReviewsPerWine
     @minEntries INT,
-    @maxEntries INT
+    @maxEntries INT,
+    @originGeo GEOGRAPHY,
+    @distance INT
 AS
 
 DECLARE @wineId INT
@@ -330,9 +333,11 @@ BEGIN
 
     WHILE @entries > 0
     BEGIN
+
+        -- Insert the review
         DECLARE @description VARCHAR(1000) =  'UserId' + LTRIM(STR(@userIdIndex)) + '_Description'
         DECLARE @rating INT = ROUND(((5 - 0 - 1) * RAND() + 0), 0)
-        DECLARE @purchasePrice NUMERIC = ROUND(((5 - 0 - 1) * RAND() + 0), 0)
+        DECLARE @purchasePrice NUMERIC = ROUND(((400 - 8 - 1) * RAND() + 8), 0)
         DECLARE @computer VARCHAR(50) =  'UserId' + LTRIM(STR(@userIdIndex)) + '_Computer'
         DECLARE @username VARCHAR(50) =  'UserId' + LTRIM(STR(@userIdIndex)) + '_Username'
         DECLARE @postTime DATETIME = CURRENT_TIMESTAMP
@@ -360,8 +365,43 @@ BEGIN
                 @checksum
             )
 
-        -- TODO Insert Address/Location
+        DECLARE @newReviewId INT = SCOPE_IDENTITY()
 
+        -- Insert the review address in a random location around the origin
+        DECLARE @newGeo GEOGRAPHY
+        EXECUTE dbo.getRandomGeographyAround @originGeo, @distance, @newGeo = @newGeo OUTPUT
+
+        DECLARE @locationName VARCHAR(50) = 'Review' + LTRIM(STR(@newReviewId))
+        DECLARE @line1 varchar(50) = @locationName + '_Line1'
+        DECLARE @line2 varchar(50) = @locationName + '_Line2'
+        DECLARE @line3 varchar(50) = @locationName + '_Line3'
+        DECLARE @city varchar(50) = @locationName + '_City'
+        DECLARE @province varchar(50) = @locationName + '_Province'
+        DECLARE @country varchar(50) = @locationName + '_Country'
+        DECLARE @details varchar(1000) = @locationName + '_Details'
+        DECLARE @geography geography = @newGeo
+
+        DECLARE @newAddressId INT
+        EXECUTE dbo.insertAddress
+            @line1,
+            @line2,
+            @line3,
+            @city,
+            @province,
+            @country,
+            @details,
+            @geography,
+            @newId = @newAddressId OUTPUT
+
+        INSERT dbo.ReviewAddress
+            ([FK_ReviewAddress_Review_Id], [FK_ReviewAddress_Address_Id])
+        VALUES
+            (
+                @newReviewId,
+                @newAddressId
+            )
+
+        -- Move on
         SET @userIdIndex = @userIdIndex + 1
         SET @entries = @entries - 1
     END
@@ -376,21 +416,22 @@ GO
 -- DATABASE POPULATION
 -- -------- ----------
 
-EXECUTE [dbo].[populateWineyards] 1, 1, 1, 60
+EXECUTE [dbo].[populateWineyards] 1, 100, 1, 60
 GO
 
-DECLARE @originPoint GEOGRAPHY = GEOGRAPHY::Point('47.65100', '-122.34900', '4326')
-EXECUTE [dbo].[populateWineyardsLocations] @originPoint, 20000
+DECLARE @originPoint GEOGRAPHY = GEOGRAPHY::Point('9.945736', '-84.055214', '4326')
+EXECUTE [dbo].[populateWineyardsLocations] @originPoint, 100000
 GO
 
-EXECUTE [dbo].[populateWineTypes] 1, 1
+EXECUTE [dbo].[populateWineTypes] 1, 20
 GO
 
-EXECUTE [dbo].[populateWines] 1, 1, 1970, 2016
+EXECUTE [dbo].[populateWines] 1, 2000, 1970, 2016
 GO
 
 EXECUTE [dbo].[populateUsers] 1, 5
 GO
 
-EXECUTE [dbo].[populateReviewsPerWine] 0, 5
+DECLARE @originPoint GEOGRAPHY = GEOGRAPHY::Point('9.945736', '-84.055214', '4326')
+EXECUTE [dbo].[populateReviewsPerWine] 0, 5, @originPoint, 100000
 GO
