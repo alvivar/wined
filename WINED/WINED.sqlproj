@@ -103,6 +103,7 @@
     <None Include="Scripts\DabataseFilling.sql" />
     <None Include="Scripts\SimpleQuery.sql" />
     <None Include="Scripts\DatabaseCleaning.sql" />
+    <None Include="Stored Procedures\getWinesAndWineyardsTest.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\WineyardAddress.sql" />
