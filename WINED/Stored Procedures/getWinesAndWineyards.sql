@@ -3,11 +3,18 @@
 	@distance int
 AS
 
-SELECT Name, Geography
+SELECT 
+	w.Name as WineName, 
+	w.Year as WineYear, 
+	r.Rating as WineRating,
+	wy.Name as WineYardName, 
+	wy.Antiquity as WineyardAntiquity, Geography
 FROM
-	Wineyard w
-	JOIN WineyardAddress wa ON w.Id = wa.FK_WineyardAddress_Wineyard_Id
-	JOIN Address a ON a.Id = wa.FK_WineyardAddress_Address_Id
+	Wine w
+	INNER JOIN Wineyard wy ON w.FK_Wine_Wineyard_Id = wy.Id
+	INNER JOIN WineyardAddress wa ON wy.Id = wa.FK_WineyardAddress_Wineyard_Id
+	INNER JOIN Address a ON a.Id = wa.FK_WineyardAddress_Address_Id
+	INNER JOIN Review r ON r.FK_Review_Wine_Id = w.Id
 WHERE Geography.STDistance(@geography) < @distance
 
 RETURN 0
