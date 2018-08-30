@@ -17,4 +17,6 @@ FROM
 	INNER JOIN Review r ON r.FK_Review_Wine_Id = w.Id
 WHERE Geography.STDistance(@geography) < @distance
 
+-- TODO Get food recommendations and attributes
+
 RETURN 0
