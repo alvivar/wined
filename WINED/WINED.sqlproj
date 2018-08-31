@@ -69,6 +69,7 @@
     <Build Include="Tables\Following.sql" />
     <Build Include="Tables\Food.sql" />
     <Build Include="Tables\Ingredient.sql" />
+    <Build Include="Stored Procedures\insertReview.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Tables\WINED.refactorlog" />
