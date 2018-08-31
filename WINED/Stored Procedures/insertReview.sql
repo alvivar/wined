@@ -5,8 +5,8 @@
 	@wineName varchar(50),
 	@description varchar(1000),
 	@rating tinyint
-	-- Valorización de atributos del vino
-	-- Comidas de la experiencia del vino
+-- Valorización de atributos del vino
+-- Comidas de la experiencia del vino
 AS
 
 BEGIN TRANSACTION

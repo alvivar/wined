@@ -3,12 +3,14 @@
 	@distance int
 AS
 
-SELECT 
-	w.Name as WineName, 
-	w.Year as WineYear, 
+SELECT
+	w.Name as WineName,
+	w.Year as WineYear,
 	r.Rating as WineRating,
-	wy.Name as WineYardName, 
+	wy.Name as WineYardName,
 	wy.Antiquity as WineyardAntiquity, Geography
+-- Mariage
+-- Attributes
 FROM
 	Wine w
 	INNER JOIN Wineyard wy ON w.FK_Wine_Wineyard_Id = wy.Id
