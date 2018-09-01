@@ -2,13 +2,23 @@
     To do
 
 
-    Changing tables Identity to (1,1)
+    Rename FK to a better simpler name
     Address normalization for city/province/country
     Location should have his own table?
 
+
+    2018/08/31 02:05 am
+    x Changing tables Identity to (1, 1)
 
     2018/08/13 05:58 am
     x Authentication / Oauth in the database design
 
     2018/08/12 02:52 pm
     x Import to Azure
+
+
+Azure alvivar Database
+9MzyUq5bHMcC41vs
+
+Microsoft
+JeDNQT0UMUGeYWqhmL
