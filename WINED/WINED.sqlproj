@@ -70,6 +70,8 @@
     <Build Include="Tables\Food.sql" />
     <Build Include="Tables\Ingredient.sql" />
     <Build Include="Stored Procedures\insertReview.sql" />
+    <None Include="Stored Procedures\insertReviewTest.sql" />
+    <Build Include="getWineRankingsByLocation.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Tables\WINED.refactorlog" />
